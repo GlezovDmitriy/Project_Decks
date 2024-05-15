@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-type ItemsType = {
+export type ItemsType = {
     author: AuthorType,
     id: string,
     userId: string,
