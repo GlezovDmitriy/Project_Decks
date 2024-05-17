@@ -26,6 +26,7 @@ export type GetDecksType = {
     items: ItemsType[],
     pagination: PaginationType
 }
+
 export const instance = axios.create({
     baseURL: 'https://api.flashcards.andrii.es',
     headers: {
@@ -36,5 +37,8 @@ export const instance = axios.create({
 export const decksApi = {
     getDecks() {
         return instance.get<GetDecksType>('/v2/decks')
+    },
+    addDeck (name:string) {
+        return instance.post<ItemsType>('/v1/decks', name)
     }
 }

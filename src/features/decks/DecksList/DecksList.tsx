@@ -8,16 +8,19 @@ import {DeckItem} from "./DeckItem/DeckItem.tsx";
 import {store, useAppDispatch, useAppSelector} from "../../../app/store.ts";
 import {selector} from "../decks-selectors.ts";
 import {fetchDecksTC} from "../decks-thunks.ts";
+import {useFetchDecks} from "./useFetchDecks.tsx";
 export const DecksList = () => {
-  //const [decks, setDecks] = useState<ItemsType[]>([])
+
   //const decks = useAppSelector(state => state.decksReducer.decks)
   // можно вынести отдельно в селекторы
-  const decks = useAppSelector(selector)
-  const dispatch = useAppDispatch();
+  ///////////////////////////////////////////
+  /*const decks = useAppSelector(selector)
+  const dispatch = useAppDispatch();         //это все  можно вынести в отдельную функцию (хук) useFetchDecks
   useEffect(() => {
    dispatch(fetchDecksTC())
-  }, []);
-
+  }, [dispatch]);*/
+/////////////////////////////////////////////
+  const {decks} = useFetchDecks()
 
   return <ul className={s.list}>
     {decks.map(el =>(

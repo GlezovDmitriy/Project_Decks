@@ -1,5 +1,7 @@
 import s from './AddNewPostForm.module.css'
 import { useForm } from 'react-hook-form'
+import {decksApi} from "../decks-api.ts";
+import dispatch from "redux";
 
 type FormValues = {
   name: string
@@ -17,7 +19,7 @@ export const AddNewDeckForm = () => {
   })
 
   const onSubmit = (data: FormValues) => {
-    console.log(data)
+    decksApi.addDeck(data.name).then(res => dispatch(addDecksAC(res.data.name)))
   }
 
   return (
