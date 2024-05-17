@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {DeckItem} from "./DeckItem/DeckItem.tsx";
 import {store, useAppDispatch, useAppSelector} from "../../../app/store.ts";
 import {selector} from "../decks-selectors.ts";
+import {fetchDecksTC} from "../decks-thunks.ts";
 export const DecksList = () => {
   //const [decks, setDecks] = useState<ItemsType[]>([])
   //const decks = useAppSelector(state => state.decksReducer.decks)
@@ -14,8 +15,7 @@ export const DecksList = () => {
   const decks = useAppSelector(selector)
   const dispatch = useAppDispatch();
   useEffect(() => {
-    decksApi.getDecks().then(res => dispatch(setDecksAC(res.data.items)) )
-
+   dispatch(fetchDecksTC())
   }, []);
 
 
