@@ -1,5 +1,5 @@
 import {GetDecksType, ItemsType} from "./decks-api.ts";
-import {name} from "axios";
+
 
 const initialState = {
   decks: [] as ItemsType[], // todo: add type
@@ -16,7 +16,7 @@ export const decksReducer = (state: DecksState = initialState, action: ActionTyp
       return {...state, decks: action.decks}
     }
     case "ADD-DECK": {
-      return {...state, searchParams: action.name}
+      return {...state, decks:[action.deck, ...state.decks]}
     }
     default:
       return state
@@ -31,9 +31,9 @@ type AddDecksActionType = ReturnType<typeof addDecksAC>
 export const setDecksAC = (decks: ItemsType[]): DecksActions=>{
   return {type: "SET-DECKS", decks}
 }
-export const addDecksAC = (name: string) =>{
+export const addDecksAC = (deck: ItemsType) =>{
   return {
     type: "ADD-DECK" as const,
-    name
+    deck
   }
 }

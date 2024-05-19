@@ -38,7 +38,11 @@ export const decksApi = {
     getDecks() {
         return instance.get<GetDecksType>('/v2/decks')
     },
-    addDeck (name:string) {
-        return instance.post<ItemsType>('/v1/decks', name)
+    addDeck (params: AddDeckParamsType) {
+        return instance.post<ItemsType>('/v1/decks', params)
     }
+}
+
+export type AddDeckParamsType = {
+    name: string
 }
